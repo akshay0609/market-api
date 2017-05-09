@@ -23,7 +23,7 @@ class Product < ApplicationRecord
 	}
 
 	def self.search(params = {})
-		products = params[:id].present? ? Product.find(params[:id]) : Product.all
+		products = params[:id].present? ? Product.where(id: params[:id]) : Product.all
 
 		products = products.filter_by_title(params[:title]) if params[:title].present?
 		products = products.above_and_equal_to_price(params[:max_price].to_f) if params[:max_price].present?

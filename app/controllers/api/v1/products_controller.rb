@@ -3,7 +3,12 @@ class Api::V1::ProductsController < ApplicationController
 	before_action :authenticate_with_token!,:only=> [:create, :update]
 
 	def index
-		respond_with Product.search(params)
+		products = Product.search(params).paginate(:page => params[:page], :per_page =>  params[:per_page])
+		render json: products, meta: {
+															pagination: {
+																per_page: params[:per_page]
+															}
+														}
 	end
 
 	def show

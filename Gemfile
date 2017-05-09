@@ -35,6 +35,8 @@ gem 'compass-rails', '~> 2.0'
 gem 'furatto'
 gem 'font-awesome-rails'
 gem 'simple_form'
+gem 'will_paginate', '~> 3.1.0'
+gem 'delayed_job_active_record'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
