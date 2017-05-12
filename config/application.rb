@@ -35,6 +35,13 @@ module MarketPlaceApi
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.perform_deliveries = true
 
+  config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins '*'
+      resource '*', :headers => :any, :methods => [:get, :post, :options]
+    end
+  end
+
 	config.autoload_paths += %W(\#{config.root}/lib)
   end
 end

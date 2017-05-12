@@ -6,7 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 	validates :auth_token, uniqueness: true
-
+	validates :name, presence: true
+	
 	has_many :products, dependent: :destroy
 	has_many :orders, dependent: :destroy
 
