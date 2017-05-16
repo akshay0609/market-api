@@ -16,7 +16,9 @@ class Api::V1::ProductsController < ApplicationController
 	end
 
 	def create
+		
 		product = current_user.products.new(product_params)
+		product.pictures.new(image: product_images)
 		if product.save
 			render json: product, status: 201, location: [:api, product]
 		else
@@ -43,5 +45,9 @@ class Api::V1::ProductsController < ApplicationController
 
 	def product_params
 		params.require(:product).permit(:title, :price, :published)
+	end
+
+	def product_images
+		params[:product]
 	end
 end
