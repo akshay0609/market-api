@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
-	validates :title, :user_id, presence: true
-	validates :price, numericality: { greater_then_or_equal_to: 0 },
+	validates :title, :user_id, :description, presence: true
+	validates :price, :quantity, numericality: { greater_then_or_equal_to: 0 },
 										presence: true
 	belongs_to :user
 	has_many :placements
@@ -32,5 +32,11 @@ class Product < ApplicationRecord
 		products = products.recent(params[:recent]) if params[:recent].present?
 
 		products 	
+	end
+
+	def build_images(images)
+		images.each do |image|
+			self.pictures.new(name:image['base64'])
+		end
 	end
 end

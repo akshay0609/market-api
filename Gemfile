@@ -5,7 +5,7 @@ gem 'pry'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.0'
+gem 'puma'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
@@ -39,6 +39,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'delayed_job_active_record'
 gem 'rack-cors'
 gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-base64'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
