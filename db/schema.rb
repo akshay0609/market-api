@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516120937) do
+ActiveRecord::Schema.define(version: 20170519111008) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -55,13 +55,14 @@ ActiveRecord::Schema.define(version: 20170516120937) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "title",      default: ""
+    t.string   "title",       default: ""
     t.decimal  "price"
-    t.boolean  "published",  default: false
+    t.boolean  "published",   default: false
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "quantity",   default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "quantity",    default: 0
+    t.text     "description"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 

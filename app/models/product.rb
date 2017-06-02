@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 	belongs_to :user
 	has_many :placements
 	has_many :orders, through: :placements
-	has_many :pictures, as: :imageable
+	has_many :pictures, as: :imageable, dependent: :destroy
 
 	scope :filter_by_title, lambda { |keyword| 
 		where("lower(title) LIKE ?", "%#{keyword.downcase}%")
@@ -29,14 +29,15 @@ class Product < ApplicationRecord
 		products = products.filter_by_title(params[:title]) if params[:title].present?
 		products = products.above_and_equal_to_price(params[:max_price].to_f) if params[:max_price].present?
 		products = products.below_and_equal_to_price(params[:min_price].to_f) if params[:min_price].present?
-		products = products.recent(params[:recent]) if params[:recent].present?
+		products = products.recent() if params[:recent].present?
+		products = products.limit(params[:limit].to_i) if params[:limit].present?
 
 		products 	
 	end
 
 	def build_images(images)
 		images.each do |image|
-			self.pictures.new(name:image['base64'])
+			self.pictures.new(name: "data:image/jpeg;base64," + image['base64'])
 		end
 	end
 end

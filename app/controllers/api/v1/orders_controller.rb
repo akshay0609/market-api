@@ -12,7 +12,7 @@ class Api::V1::OrdersController < ApplicationController
 	end
 
 	def show
-		respond_to current_user.orders.find(params[:id])
+		render json: current_user.orders.find(params[:id])
 	end
 
 	def create
@@ -31,6 +31,8 @@ class Api::V1::OrdersController < ApplicationController
 	def order_params
 		# params.require(:order).permit(:product_ids)[:product_ids].tr('[]', '').split(',').map(&:to_i)
  		# params.require(:order).permit(:product_ids => [])
- 		params[:order][:product_and_quantity].tr('[]', '').split(',').map(&:to_i).each_slice(2).to_a
+ 		# binding.pry
+ 		# params[:order][:product_and_quantity].tr('[]', '').split(',').map(&:to_i).each_slice(2).to_a
+ 		params[:order][:product_and_quantity]
 	end
 end

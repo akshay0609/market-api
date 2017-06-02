@@ -41,7 +41,7 @@ module MarketPlaceApi
       resource '*', :headers => :any, :methods => [:get, :post, :options]
     end
   end
-
+  
 	config.autoload_paths += %W(\#{config.root}/lib)
   end
 end

@@ -3,7 +3,11 @@ class Api::V1::ProductsController < ApplicationController
 	before_action :authenticate_with_token!,:only=> [:create, :update]
 
 	def index
-		products = Product.search(params).paginate(:page => params[:page], :per_page =>  params[:per_page])
+		if params[:page].present? || params[:per_page].present?
+			products = Product.search(params).paginate(:page => params[:page], :per_page =>  params[:per_page])
+		else
+			products = Product.search(params)
+		end
 		render json: products, meta: {
 															pagination: {
 																per_page: params[:per_page]
@@ -12,7 +16,7 @@ class Api::V1::ProductsController < ApplicationController
 	end
 
 	def show
-		respond_with Product.find(params[:id])
+		render json: Product.find(params[:id])
 	end
 
 	def create
@@ -43,6 +47,6 @@ class Api::V1::ProductsController < ApplicationController
 	private
 
 	def product_params
-		params.require(:product).permit(:title, :price, :published, :description)
+		params.require(:product).permit(:title, :price, :published, :description, :quantity)
 	end
 end
