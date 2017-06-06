@@ -11,6 +11,7 @@ class Order < ApplicationRecord
   validates :user_id, presence: true
   validates_with EnoughProductsValidator
 
+
   def set_total!
     self.total = 0
     self.placements.each do |placement|

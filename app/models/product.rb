@@ -12,24 +12,24 @@ class Product < ApplicationRecord
 	}
 
 	scope :above_and_equal_to_price, lambda { |price| 
-		where("price >= ? ", price)
-	}
-
-	scope :below_and_equal_to_price, lambda { |price| 
 		where("price <= ? ", price)
 	}
 
-	scope :recent, -> {
-		order(:updated_at)
+	scope :below_and_equal_to_price, lambda { |price| 
+		where("price >= ? ", price)
+	}
+
+	scope :recent, lambda { |order_by|
+		order(order_by)
 	}
 
 	def self.search(params = {})
 		products = params[:id].present? ? Product.where(id: params[:id]) : Product.all
-
+		
 		products = products.filter_by_title(params[:title]) if params[:title].present?
 		products = products.above_and_equal_to_price(params[:max_price].to_f) if params[:max_price].present?
 		products = products.below_and_equal_to_price(params[:min_price].to_f) if params[:min_price].present?
-		products = products.recent() if params[:recent].present?
+		products = products.recent(params[:order_by]) if params[:order_by].present?
 		products = products.limit(params[:limit].to_i) if params[:limit].present?
 
 		products 	

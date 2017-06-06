@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 	validates :auth_token, uniqueness: true
 	validates :name, presence: true
+	validates_confirmation_of :password
 	
 	has_many :products, dependent: :destroy
 	has_many :orders, dependent: :destroy

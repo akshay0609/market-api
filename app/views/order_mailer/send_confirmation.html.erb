@@ -14,8 +14,8 @@ th, td {
       <div class="row">
         <div class="col-md-8">
           <p>
-            Akshay Sharma<br>
-            a@a.com<br>
+            <%= @user.name%><br>
+            <%= @user.email%><br>
             Lorem ipsum dolor sit amet, 
             proident, sunt in culpa qui officia deserunt orum.<br>
             consectetur adipisicing elit, sed do eiusmod<br>
@@ -42,8 +42,8 @@ th, td {
 					   	<tr>
 						  	<td style=" padding: 5px;text-align: left;border: 1px solid black;border-collapse: collapse;"><%= product.title %></td>
 						  	<td style=" padding: 5px;text-align: left;border: 1px solid black;border-collapse: collapse;"><%= @order.placements[0].quantity %></td>
-						  	<td style=" padding: 5px;text-align: left;border: 1px solid black;border-collapse: collapse;"><%= number_to_currency product.price %></td>
-						  	<td style=" padding: 5px;text-align: left;border: 1px solid black;border-collapse: collapse;"><%= product.price * @order.placements[0].quantity %></td>
+						  	<td style=" padding: 5px;text-align: left;border: 1px solid black;border-collapse: collapse;">&#x20B9; <%= product.price %></td>
+						  	<td style=" padding: 5px;text-align: left;border: 1px solid black;border-collapse: collapse;">&#x20B9; <%= product.price * @order.placements[0].quantity %></td>
 						    <td style=" padding: 5px;text-align: left;border: 1px solid black;border-collapse: collapse;"><input type="button" name="Review" value="Review" style="-moz-box-shadow:inset 0px 0px 15px 3px #91b8b3;
 												-webkit-box-shadow:inset 0px 0px 15px 3px #91b8b3;
 												box-shadow:inset 0px 0px 15px 3px #91b8b3;

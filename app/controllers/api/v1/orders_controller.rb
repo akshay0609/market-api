@@ -3,12 +3,13 @@ class Api::V1::OrdersController < ApplicationController
 	respond_to :json
 
 	def index
-		orders = current_user.orders.paginate(:page => params[:page], :per_page => params[:per_page])
-		render json: orders, meta: {
-													pagination: {
-														per_page: params[:per_page]
-													}
-												}
+		orders = current_user.orders.paginate(:page => params[:page], 
+																					:per_page => params[:per_page]).order('id DESC')
+
+		# orders['per_page'] 			= params[:per_page]
+		# orders['total_orders']  = current_user.orders.count
+
+		render json: orders
 	end
 
 	def show
