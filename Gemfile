@@ -8,6 +8,7 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'puma'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.5'
+gem 'sass-rails', '>= 3.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -29,11 +30,7 @@ gem 'jquery-rails'
 gem 'active_model_serializers'
 gem 'devise'
 
-gem 'sabisu_rails', github: "jvrsgsty/sabisu-rails"
-gem 'compass-rails', '~> 2.0'
-gem 'furatto'
-gem 'font-awesome-rails'
-gem 'simple_form'
+
 gem 'will_paginate', '~> 3.1.0'
 gem 'delayed_job_active_record'
 gem 'rack-cors'
