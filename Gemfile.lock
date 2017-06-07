@@ -267,6 +267,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   carrierwave-base64
   coffee-rails (~> 4.2)
+  compass
   compass-rails (~> 2.0)
   delayed_job_active_record
   devise
