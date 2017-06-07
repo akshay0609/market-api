@@ -4,7 +4,7 @@
   before_action :authenticate_with_token!, only: [:update, :destroy]
 
   def show
-    respond_with User.find(params[:id])
+    render json: User.find(params[:id])
   end
 
   def create
@@ -18,7 +18,7 @@
   end
 
   def update
-  	if @user.update(user_params)
+  	if current_user.update(user_params)
 			render json: @user, status: 200, location: [:api, @user]
 		else
 			render json: {errors: @user.errors}, status: 422

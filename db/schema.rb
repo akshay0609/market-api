@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509103537) do
+ActiveRecord::Schema.define(version: 20170519111008) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20170509103537) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
+  end
+
   create_table "placements", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "product_id"
@@ -46,13 +55,14 @@ ActiveRecord::Schema.define(version: 20170509103537) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "title",      default: ""
+    t.string   "title",       default: ""
     t.decimal  "price"
-    t.boolean  "published",  default: false
+    t.boolean  "published",   default: false
     t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "quantity",   default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "quantity",    default: 0
+    t.text     "description"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -70,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170509103537) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "auth_token",             default: ""
+    t.string   "name"
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
