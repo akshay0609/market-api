@@ -10,10 +10,10 @@ class ProductSerializer < ActiveModel::Serializer
   def adds_image
   	# hostname = "http://10.0.28.241:3000/"
     # return hostname + object.pictures[0].name.url
-  	return object.pictures[0].name.url
+  	return object.pictures.first.name.url
   end
 
   def total_product
-    Product.count
+    Product.all.count
   end
 end
