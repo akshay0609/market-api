@@ -10,7 +10,7 @@ class ProductSerializer < ActiveModel::Serializer
   def adds_image
   	# hostname = "http://10.0.28.241:3000/"
     # return hostname + object.pictures[0].name.url
-    return "http://res.cloudinary.com/dzrgwhm1s/" + object.pictures[0].name.identifier	
+    return object.pictures[0].name.url
   end
 
   def total_product
