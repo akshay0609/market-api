@@ -14,6 +14,6 @@ class ProductSerializer < ActiveModel::Serializer
   end
 
   def total_product
-    Product.all.count
+    Product.count
   end
 end
